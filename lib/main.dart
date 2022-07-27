@@ -1,4 +1,4 @@
-import 'src/card_page.dart';
+import 'src/card_list.dart';
 import 'package:flutter/material.dart';
 import 'src/card_constants.dart';
 
@@ -9,10 +9,10 @@ class HearthstoneCardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: materialAppTitle,
-      home: CardPage(),
+      home: CardList(),
     );
   }
 }

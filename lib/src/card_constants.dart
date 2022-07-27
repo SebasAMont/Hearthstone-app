@@ -1,22 +1,32 @@
 const String materialAppTitle = 'Hearthstone cards';
-const String appBarTitle = 'Is this your card?';
+const String appBarCardPageTitle = 'Is this your card?';
+const String appBarCardListTitle = 'This is the list of cards';
 const String assetPathBackgroundImage = 'assets/images/hsbackground.png';
+const String cardListListViewError = "error";
 const String assetPathCardImage = 'assets/images/leper.png';
-const String cardTextInfo = 'Name: Leper Gnome\n'
-    'Type: Minion\n'
-    'Faction: Neutral\n'
-    'Rarity: Common\n'
-    'Cost: 1\n'
-    'Attack: 2\n'
-    'Health: 1\n'
-    'Ability:Deathrattle: Deal 2 damage to the enemy hero.\n';
-const String counterText = 'Likes';
+const String assetPathDataHandler = 'assets/json/hearthstone_app_data.json';
+const String cardTextInfo = 'Name';
+const String cardPageCounterText = 'Likes';
+const String elevatedButtonCardListText = "Check the card";
+const String cardName = "Name:";
+const String cardId = "CardId:";
+const String cardDbfId = "DbfId:";
+const String cardSet = "CardSet:";
+const String cardType = "Type:";
+const String cardText = "Text:";
+const String cardPlayerClass = "PlayerClass:";
+const String cardLocale = "Locale:";
+const String cardMechanics = "Mechanics:";
+const String cardHealth = "Health:";
+const String emptyValueHearthstoneCardFactory = "";
 const int counterInitialValue = 0;
-const double appBarTitleFontSize = 35.0;
+const double appBarCardPageTitleFontSize = 35.0;
+const double appBarCardListTitleFontSize = 25.0;
 const double backgroundImageContainerHeight = 1100.0;
 const double cardTextPaddingLeftTopRight = 50.0;
 const double cardTextPaddingBottom = 0.1;
 const double cardTextInfoFontSize = 25.0;
+const double cardListPaddingListView = 8;
 const double cardImageBoxSizeWidth = 600.0;
 const double cardImageBoxSizeHeight = 600.0;
 const double elevatedButtonElevationValue = 24.3;
