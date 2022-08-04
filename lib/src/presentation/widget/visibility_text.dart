@@ -1,21 +1,19 @@
-import "package:flutter/material.dart";
-import 'card_constants.dart';
+import 'package:flutter/material.dart';
+import '../../core/util/card_constants.dart';
 
 class VisibilityText extends StatelessWidget {
   const VisibilityText({
     required this.cardAttribute,
-    required this.visibleCondition,
-    Key? key,
-  }) : super(
-          key: key,
-        );
+    required this.isVisible,
+    super.key,
+  });
   final String cardAttribute;
-  final bool visibleCondition;
+  final bool isVisible;
 
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: visibleCondition,
+      visible: isVisible,
       child: Text(
         cardAttribute,
         style: const TextStyle(

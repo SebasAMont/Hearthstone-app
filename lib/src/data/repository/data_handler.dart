@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import '../src/card_constants.dart';
-import '../src/model/card.dart';
+import '../../core/util/card_constants.dart';
+import '../model/card.dart';
 
 class DataHandler {
   final List<HearthstoneCard> _cardInfo = <HearthstoneCard>[];
@@ -12,10 +12,10 @@ class DataHandler {
     );
     final List<dynamic> cardData = await jsonDecode(
       response,
-    );
+    ) as List<dynamic>;
     for (int i = 0; i < cardData.length; i++) {
       final element = cardData[i];
-      final hsCard = HearthstoneCard.fromJson(element);
+      final hsCard = HearthstoneCard.fromJson(element as Map<String, dynamic>);
       _cardInfo.add(hsCard);
     }
     return _cardInfo;
