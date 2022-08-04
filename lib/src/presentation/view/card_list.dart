@@ -1,15 +1,14 @@
-import 'model/card.dart';
 import 'package:flutter/material.dart';
-import 'card_constants.dart';
+import '../../core/util/card_constants.dart';
+import '../../data/model/card.dart';
+import '../../data/repository/data_handler.dart';
 import 'card_page.dart';
-import '../repository/data_handler.dart';
 
 class CardList extends StatelessWidget {
   CardList({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+    super.key,
+  });
+
   final DataHandler _dataHandler = DataHandler();
 
   @override
@@ -64,37 +63,39 @@ class CardList extends StatelessWidget {
                           }
                           if (snapshot.hasData) {
                             return ListView.builder(
-                                padding: const EdgeInsets.all(
-                                    cardListPaddingListView),
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: snapshot.data?.length,
-                                itemBuilder: (
-                                  BuildContext context,
-                                  index,
-                                ) {
-                                  return ListTile(
-                                    title: Text(
-                                      snapshot.data![index].name,
-                                      style: const TextStyle(
-                                        fontSize: cardTextInfoFontSize,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              padding: const EdgeInsets.all(
+                                cardListPaddingListView,
+                              ),
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data?.length,
+                              itemBuilder: (
+                                BuildContext context,
+                                index,
+                              ) {
+                                return ListTile(
+                                  title: Text(
+                                    snapshot.data![index].name,
+                                    style: const TextStyle(
+                                      fontSize: cardTextInfoFontSize,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              CardPage(
-                                            hearthstoneCard:
-                                                snapshot.data![index],
-                                          ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            CardPage(
+                                          hearthstoneCard:
+                                              snapshot.data![index],
                                         ),
-                                      );
-                                    },
-                                  );
-                                });
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
                           } else {
                             return const SizedBox(
                               child: Text(

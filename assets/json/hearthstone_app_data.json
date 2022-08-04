@@ -101,6 +101,14 @@
     "cardSet": "The League of Explorers",
     "type": "Enchantment",
     "playerClass": "Neutral",
-    "locale": "enUS"
+    "locale": "enUS",
+    "mechanics": [
+      {
+        "name": "Haste"
+      },
+      {
+        "name": "Lifelink"
+      }
+    ]
   }
 ]

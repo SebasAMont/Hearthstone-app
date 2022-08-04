@@ -1,6 +1,6 @@
-import 'src/card_list.dart';
 import 'package:flutter/material.dart';
-import 'src/card_constants.dart';
+import 'src/core/util/card_constants.dart';
+import 'src/presentation/view/card_list.dart';
 
 void main() => runApp(const HearthstoneCardApp());
 

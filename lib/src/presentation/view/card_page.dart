@@ -1,17 +1,15 @@
-import 'package:first_app/src/model/card.dart';
-import 'package:first_app/src/visibility_text.dart';
+import 'package:first_app/src/data/model/card.dart';
+import 'package:first_app/src/presentation/widget/visibility_text.dart';
 import 'package:flutter/material.dart';
-import 'card_constants.dart';
+import '../../core/util/card_constants.dart';
 
 class CardPage extends StatefulWidget {
   final HearthstoneCard hearthstoneCard;
 
   const CardPage({
     required this.hearthstoneCard,
-    Key? key,
-  }) : super(
-          key: key,
-        );
+    super.key,
+  });
 
   @override
   State<CardPage> createState() => _CardPageState();
@@ -69,55 +67,88 @@ class _CardPageState extends State<CardPage> {
                           VisibilityText(
                             cardAttribute:
                                 '$cardName  ${widget.hearthstoneCard.name}',
-                            visibleCondition: true,
+                            isVisible: true,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardText ${widget.hearthstoneCard.text}',
-                            visibleCondition:
-                                (widget.hearthstoneCard.text != null),
-                          ),
-                          VisibilityText(
-                            cardAttribute:
-                                '$cardMechanics ${widget.hearthstoneCard.mechanics}',
-                            visibleCondition:
-                                (widget.hearthstoneCard.mechanics != null),
+                            isVisible: widget.hearthstoneCard.text != null,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardHealth ${widget.hearthstoneCard.health}',
-                            visibleCondition:
-                                (widget.hearthstoneCard.health != null),
+                            isVisible: widget.hearthstoneCard.health !=
+                                defaultCardHealth,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardType ${widget.hearthstoneCard.type}',
-                            visibleCondition: true,
+                            isVisible: true,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardLocale ${widget.hearthstoneCard.locale}',
-                            visibleCondition: true,
+                            isVisible: true,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardId ${widget.hearthstoneCard.cardId}',
-                            visibleCondition: true,
+                            isVisible: true,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardSet ${widget.hearthstoneCard.cardSet}',
-                            visibleCondition: true,
+                            isVisible: true,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardDbfId ${widget.hearthstoneCard.dbfId}',
-                            visibleCondition: true,
+                            isVisible: true,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardPlayerClass ${widget.hearthstoneCard.playerClass}',
-                            visibleCondition: true,
+                            isVisible: true,
+                          ),
+                          Visibility(
+                            visible:
+                                widget.hearthstoneCard.mechanics!.isNotEmpty,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: cardPageListViewPaddingTop,
+                                  ),
+                                  child: VisibilityText(
+                                    cardAttribute: cardMechanics,
+                                    isVisible: widget
+                                        .hearthstoneCard.mechanics!.isNotEmpty,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                    padding: const EdgeInsets.all(
+                                      cardListPaddingListView,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: widget
+                                        .hearthstoneCard.mechanics!.length,
+                                    itemBuilder: (BuildContext context, index) {
+                                      return VisibilityText(
+                                        cardAttribute:
+                                            ' ${widget.hearthstoneCard.mechanics![index]}',
+                                        isVisible: widget.hearthstoneCard
+                                            .mechanics!.isNotEmpty,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -144,9 +175,7 @@ class _CardPageState extends State<CardPage> {
                               elevatedButtonShapeBorderRadiusValue,
                             ),
                             side: const BorderSide(
-                              color: Colors.black,
                               width: elevatedButtonSideBorderWidthRadiusValue,
-                              style: BorderStyle.solid,
                             ),
                           ),
                         ),
@@ -158,7 +187,7 @@ class _CardPageState extends State<CardPage> {
                         ),
                       ),
                       child: Text(
-                        "$cardPageCounterText $_counter",
+                        '$cardPageCounterText $_counter',
                         style: const TextStyle(
                           fontSize: counterTextFontSize,
                           color: Colors.cyanAccent,
