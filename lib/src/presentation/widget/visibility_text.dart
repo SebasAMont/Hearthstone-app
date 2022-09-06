@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/util/card_constants.dart';
+import '../../core/util/constants_dimensions.dart';
 
 class VisibilityText extends StatelessWidget {
   const VisibilityText({
@@ -7,6 +7,7 @@ class VisibilityText extends StatelessWidget {
     required this.isVisible,
     super.key,
   });
+
   final String cardAttribute;
   final bool isVisible;
 

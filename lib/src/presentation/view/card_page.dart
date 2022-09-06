@@ -1,7 +1,12 @@
-import 'package:first_app/src/data/model/card.dart';
-import 'package:first_app/src/presentation/widget/visibility_text.dart';
 import 'package:flutter/material.dart';
-import '../../core/util/card_constants.dart';
+
+import '../../core/util/constants_assets.dart';
+import '../../core/util/constants_dimensions.dart';
+import '../../core/util/constants_logic.dart';
+import '../../core/util/constants_strings.dart';
+import '../../data/model/card.dart';
+import '../widget/image_box.dart';
+import '../widget/visibility_text.dart';
 
 class CardPage extends StatefulWidget {
   final HearthstoneCard hearthstoneCard;
@@ -83,16 +88,11 @@ class _CardPageState extends State<CardPage> {
                           VisibilityText(
                             cardAttribute:
                                 '$cardType ${widget.hearthstoneCard.type}',
-                            isVisible: true,
+                            isVisible: widget.hearthstoneCard.type != null,
                           ),
                           VisibilityText(
                             cardAttribute:
                                 '$cardLocale ${widget.hearthstoneCard.locale}',
-                            isVisible: true,
-                          ),
-                          VisibilityText(
-                            cardAttribute:
-                                '$cardId ${widget.hearthstoneCard.cardId}',
                             isVisible: true,
                           ),
                           VisibilityText(
@@ -102,13 +102,9 @@ class _CardPageState extends State<CardPage> {
                           ),
                           VisibilityText(
                             cardAttribute:
-                                '$cardDbfId ${widget.hearthstoneCard.dbfId}',
-                            isVisible: true,
-                          ),
-                          VisibilityText(
-                            cardAttribute:
                                 '$cardPlayerClass ${widget.hearthstoneCard.playerClass}',
-                            isVisible: true,
+                            isVisible:
+                                widget.hearthstoneCard.playerClass != null,
                           ),
                           Visibility(
                             visible:
@@ -137,7 +133,10 @@ class _CardPageState extends State<CardPage> {
                                         const NeverScrollableScrollPhysics(),
                                     itemCount: widget
                                         .hearthstoneCard.mechanics!.length,
-                                    itemBuilder: (BuildContext context, index) {
+                                    itemBuilder: (
+                                      BuildContext context,
+                                      index,
+                                    ) {
                                       return VisibilityText(
                                         cardAttribute:
                                             ' ${widget.hearthstoneCard.mechanics![index]}',
@@ -150,17 +149,17 @@ class _CardPageState extends State<CardPage> {
                               ],
                             ),
                           ),
+                          SizedBox(
+                            width: cardImageBoxSizeWidth,
+                            height: cardImageBoxSizeHeight,
+                            child: FittedBox(
+                              fit: BoxFit.fill,
+                              child: ImageBox(
+                                widgetImg: widget.hearthstoneCard.img,
+                              ),
+                            ),
+                          )
                         ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: cardImageBoxSizeWidth,
-                      height: cardImageBoxSizeHeight,
-                      child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: Image.asset(
-                          assetPathCardImage,
-                        ),
                       ),
                     ),
                     ElevatedButton(

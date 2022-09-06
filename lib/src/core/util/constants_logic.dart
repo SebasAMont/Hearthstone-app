@@ -1,0 +1,9 @@
+const int kCardBlocStartingCurrentPage = 0;
+const int kDefaultNumberOfPagesCardList = 0;
+const int kCardListButtonIndexLogic = 1;
+const int kCardBlocNumberOfCardsShowedPerPage = 10;
+const int cardBlocStartingPositionOfShowedCards = 0;
+const int defaultCardHealth = 0;
+const int counterInitialValue = 0;
+const int kCardListGridViewCrossAxisCount = 2;
+const int kCardBlocNextCardIndexFixer = 1;
