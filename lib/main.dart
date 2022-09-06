@@ -1,18 +1,48 @@
+import 'package:first_app/src/data/datasource/remote/card_api_provider.dart';
+import 'package:first_app/src/domain/repository/repository_card.dart';
+import 'package:first_app/src/presentation/bloc/card_bloc.dart';
 import 'package:flutter/material.dart';
-import 'src/core/util/card_constants.dart';
+import 'package:http/http.dart';
+import 'src/core/util/constants_strings.dart';
 import 'src/presentation/view/card_list.dart';
 
 void main() => runApp(const HearthstoneCardApp());
 
-class HearthstoneCardApp extends StatelessWidget {
+class HearthstoneCardApp extends StatefulWidget {
   const HearthstoneCardApp({super.key});
+
+  @override
+  State<HearthstoneCardApp> createState() => _HearthstoneCardAppState();
+}
+
+class _HearthstoneCardAppState extends State<HearthstoneCardApp> {
+  static final Client client = Client();
+  static final CardApiProvider cardApi = CardApiProvider(
+    client: client,
+  );
+  static final RepositoryCard repositoryCard = RepositoryCard(
+    client: client,
+    cardsApi: cardApi,
+  );
+  static CardBloc cardBloc = CardBloc(
+    repositoryCard: repositoryCard,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+
+    cardBloc.initialize();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: materialAppTitle,
-      home: CardList(),
+      home: CardList(
+        cardBloc: cardBloc,
+      ),
     );
   }
 }
