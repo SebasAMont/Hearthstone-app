@@ -28,7 +28,7 @@ abstract class EntityAbstractCard {
   });
 
   final String cardId;
-  final String? dbfId;
+  final int? dbfId;
   final String name;
   final String? cardSet;
   final String? locale;

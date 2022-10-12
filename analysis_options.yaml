@@ -26,3 +26,4 @@ linter:
     # prefer_double_quotes: true
     prefer_single_quotes: true
     always_use_package_imports: false
+

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/util/constants_assets.dart';
 import '../../core/util/constants_dimensions.dart';
 import '../../core/util/constants_logic.dart';
@@ -152,8 +151,9 @@ class _CardPageState extends State<CardPage> {
                           SizedBox(
                             width: cardImageBoxSizeWidth,
                             height: cardImageBoxSizeHeight,
-                            child: FittedBox(
-                              fit: BoxFit.fill,
+                            child: Hero(
+                              tag:
+                                  '$kHeroWidgetTag${widget.hearthstoneCard.cardId}',
                               child: ImageBox(
                                 widgetImg: widget.hearthstoneCard.img,
                               ),
