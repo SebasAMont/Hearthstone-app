@@ -73,7 +73,7 @@ void main() {
 
     when(
       mockCardBloc.getCardListFromEndpoint(
-        kRacesTotemEndpointApi,
+        kRacesTotemEndPointApi,
       ),
     ).thenAnswer((_) async {
       streamController.sink.add(

@@ -1,5 +1,5 @@
 const String baseUrlApi = 'https://omgvamp-hearthstone-v1.p.rapidapi.com';
-const String kRacesTotemEndpointApi = '/cards/races/Totem';
+const String kRacesTotemEndPointApi = '/cards/races/Totem';
 const String kRacesDemonEndPointApi = '/cards/races/Demon';
 const String kRacesMurlocEndPointApi = '/cards/races/Murloc';
 const String kApiFetchCardError = 'Error fetching data';

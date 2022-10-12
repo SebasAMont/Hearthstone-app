@@ -60,11 +60,11 @@ class CardBloc extends ICardBloc {
   }
 
   Future<void> fillAllCardsList(String endpoint) async {
-<<<<<<< HEAD
+
     allCards = await repositoryCard.addCardList(
       endpoint,
     );
-=======
+
     try {
       allCards = await fetchDataUseCase.fetchData(
         endpoint: endpoint,
@@ -75,7 +75,7 @@ class CardBloc extends ICardBloc {
       );
       return Future.error(kEmptyDatabase);
     }
->>>>>>> e9428a9 (Implemented error handling for the database call and trailing commas)
+
   }
 
   Future<void> sinkCurrentCardList() async {

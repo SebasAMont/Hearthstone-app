@@ -1,30 +1,25 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart';
+import '../../core/util/constants_api_calls.dart';
+import '../../core/util/constants_strings.dart';
 import '../../data/datasource/remote/card_api_provider.dart';
 import '../../data/model/card.dart';
+import '../../data/datasource/local/DAOs/card_database.dart';
 
 class RepositoryCard {
   final CardApiProvider cardsApi;
   final Client client;
+  final CardDatabase cardDatabase;
 
   RepositoryCard({
     required this.client,
     required this.cardsApi,
+    required this.cardDatabase,
   });
 
-<<<<<<< HEAD
   late List<HearthstoneCard> cardListApi = <HearthstoneCard>[];
 
-  Future<List<HearthstoneCard>> addCardList(String endpoint) async {
-    cardListApi = [];
-    final String responseBody = await cardsApi.fetchCardList(
-      endpoint,
-      client,
-    );
-    final List<dynamic> cardsApiList = await jsonDecode(
-      responseBody,
-    ) as List<dynamic>;
-=======
   Future<List<dynamic>> fetchDocumentSnapshot({
     required String subCollection,
   }) async {
@@ -112,7 +107,6 @@ class RepositoryCard {
       }
     }
 
->>>>>>> e9428a9 (Implemented error handling for the database call and trailing commas)
     for (int i = 0; i < cardsApiList.length; i++) {
       final element = cardsApiList[i];
       final hsCard = HearthstoneCard.fromJson(

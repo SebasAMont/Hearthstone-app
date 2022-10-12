@@ -9,6 +9,8 @@ import 'src/domain/repository/repository_card.dart';
 import 'src/presentation/bloc/card_bloc.dart';
 import 'src/presentation/view/card_list.dart';
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

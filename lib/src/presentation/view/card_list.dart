@@ -113,7 +113,7 @@ class _CardListState extends State<CardList> {
                   ),
                 ),
                 onTap: () {
-                  changeUrl(kRacesTotemEndpointApi);
+                  changeUrl(kRacesTotemEndPointApi);
                 },
               ),
               ListTile(

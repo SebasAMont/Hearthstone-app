@@ -23,7 +23,7 @@ void main() {
       when(
         client.get(
           Uri.parse(
-            baseUrlApi + kRacesTotemEndpointApi,
+            baseUrlApi + kRacesTotemEndPointApi,
           ),
           headers: kHeaderApi,
         ),
@@ -35,7 +35,7 @@ void main() {
       );
       expect(
         await cardApiProvider.fetchCardList(
-          kRacesTotemEndpointApi,
+          kRacesTotemEndPointApi,
           client,
         ),
         isA<String>(),
@@ -45,7 +45,7 @@ void main() {
       when(
         client.get(
           Uri.parse(
-            baseUrlApi + kRacesTotemEndpointApi,
+            baseUrlApi + kRacesTotemEndPointApi,
           ),
           headers: kHeaderApi,
         ),
@@ -57,7 +57,7 @@ void main() {
       );
       expect(
         cardApiProvider.fetchCardList(
-          kRacesTotemEndpointApi,
+          kRacesTotemEndPointApi,
           client,
         ),
         throwsException,

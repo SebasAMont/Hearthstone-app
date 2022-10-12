@@ -1,4 +1,5 @@
 import 'package:first_app/src/core/util/constants_api_calls.dart';
+import 'package:first_app/src/data/datasource/local/DAOs/card_database.dart';
 import 'package:first_app/src/data/datasource/remote/card_api_provider.dart';
 import 'package:first_app/src/data/model/card.dart';
 import 'package:first_app/src/domain/repository/repository_card.dart';
@@ -14,13 +15,16 @@ void main() {
   late MockClient client;
   late MockCardApiProvider cardApiProvider;
   late RepositoryCard repositoryCard;
+  late CardDatabase cardDatabase;
 
   setUp(() {
     client = MockClient();
     cardApiProvider = MockCardApiProvider();
+    cardDatabase = CardDatabase();
     repositoryCard = RepositoryCard(
       client: client,
       cardsApi: cardApiProvider,
+      cardDatabase: cardDatabase,
     );
   });
 
@@ -28,12 +32,12 @@ void main() {
     test('Add the list of cards and returns it, if it is successful', () async {
       when(
         cardApiProvider.fetchCardList(
-          kRacesTotemEndpointApi,
+          kRacesTotemEndPointApi,
           client,
         ),
       ).thenAnswer((_) async => cardListResponseBody);
       expect(
-        await repositoryCard.addCardList(kRacesTotemEndpointApi),
+        await repositoryCard.addCardList(kRacesTotemEndPointApi),
         isA<List<HearthstoneCard>>(),
       );
     });
@@ -42,12 +46,12 @@ void main() {
         () async {
       when(
         cardApiProvider.fetchCardList(
-          kRacesTotemEndpointApi,
+          kRacesTotemEndPointApi,
           client,
         ),
       ).thenAnswer((_) async => emptyCardResponseBodyList);
       expect(
-        await repositoryCard.addCardList(kRacesTotemEndpointApi),
+        await repositoryCard.addCardList(kRacesTotemEndPointApi),
         isA<List<HearthstoneCard>>(),
       );
     });
@@ -56,12 +60,12 @@ void main() {
         () async {
       when(
         cardApiProvider.fetchCardList(
-          kRacesTotemEndpointApi,
+          kRacesTotemEndPointApi,
           client,
         ),
       ).thenAnswer((_) async => cardListResponseBodyCorrupt);
       expect(
-        () async => repositoryCard.addCardList(kRacesTotemEndpointApi),
+        () async => repositoryCard.addCardList(kRacesTotemEndPointApi),
         throwsA(
           const TypeMatcher<TypeError>(),
         ),
