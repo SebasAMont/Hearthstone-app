@@ -2,9 +2,11 @@ import 'dart:async';
 import '../../core/util/card_state.dart';
 import '../../core/util/constants_api_calls.dart';
 import '../../core/util/constants_logic.dart';
+import '../../core/util/constants_strings.dart';
 import '../../data/model/card.dart';
 import '../../data/model/card_event.dart';
 import '../../domain/repository/repository_card.dart';
+import '../../domain/usecase/implementation/fetch_data_usecase.dart';
 import 'interfaces/i_card_bloc.dart';
 
 class CardBloc extends ICardBloc {
@@ -17,8 +19,12 @@ class CardBloc extends ICardBloc {
   int numberOfPagesCardList = kDefaultNumberOfPagesCardList;
 
   Map<int, List<HearthstoneCard>> page = {};
+  FetchDataUseCase fetchDataUseCase;
 
-  CardBloc({required this.repositoryCard});
+  CardBloc({
+    required this.repositoryCard,
+    required this.fetchDataUseCase,
+  });
 
   final StreamController<CardEvent> _streamController =
       StreamController<CardEvent>.broadcast();
@@ -43,18 +49,33 @@ class CardBloc extends ICardBloc {
   @override
   Future<void> getCardListFromEndpoint(String endpoint) async {
     currentPage = kCardBlocStartingCurrentPage;
+
     await fillAllCardsList(
       endpoint,
     );
+
     numberOfPagesCardList =
         (allCards.length / kCardBlocNumberOfCardsShowedPerPage).ceil();
     sinkCurrentCardList();
   }
 
   Future<void> fillAllCardsList(String endpoint) async {
+
     allCards = await repositoryCard.addCardList(
       endpoint,
     );
+
+    try {
+      allCards = await fetchDataUseCase.fetchData(
+        endpoint: endpoint,
+      );
+    } catch (e) {
+      _streamController.sink.add(
+        CardEvent(cardState: CardState.error),
+      );
+      return Future.error(kEmptyDatabase);
+    }
+
   }
 
   Future<void> sinkCurrentCardList() async {
@@ -106,7 +127,7 @@ class CardBloc extends ICardBloc {
   }
 
   Future<void> sinkAllCardList(String endpoint) async {
-    fillAllCardsList(
+    await fillAllCardsList(
       endpoint,
     );
     _streamController.sink.add(

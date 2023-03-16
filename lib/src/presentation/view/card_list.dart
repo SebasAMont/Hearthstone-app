@@ -113,7 +113,7 @@ class _CardListState extends State<CardList> {
                   ),
                 ),
                 onTap: () {
-                  changeUrl(kRacesTotemEndpointApi);
+                  changeUrl(kRacesTotemEndPointApi);
                 },
               ),
               ListTile(
@@ -193,7 +193,9 @@ class _CardListState extends State<CardList> {
                               );
                             case CardState.empty:
                               return const SizedBox(
-                                child: Text(kCardListEmpty),
+                                child: Text(
+                                  kCardListEmpty,
+                                ),
                               );
                             case CardState.success:
                               return GridView.builder(
@@ -231,9 +233,13 @@ class _CardListState extends State<CardList> {
                                     ),
                                     subtitle: Center(
                                       child: SizedBox(
-                                        child: ImageBox(
-                                          widgetImg:
-                                              snapshot.data!.cards![index].img,
+                                        child: Hero(
+                                          tag:
+                                              '$kHeroWidgetTag${snapshot.data!.cards![index].cardId}',
+                                          child: ImageBox(
+                                            widgetImg: snapshot
+                                                .data!.cards![index].img,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -257,8 +263,15 @@ class _CardListState extends State<CardList> {
 
                             case CardState.error:
                               return const SizedBox(
-                                child: Text(
-                                  cardListListViewError,
+                                width: cardImageBoxSizeWidth,
+                                child: Center(
+                                  child: Text(
+                                    kEmptyDatabase,
+                                    style: TextStyle(
+                                      fontSize: cardTextInfoFontSize,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               );
                           }
@@ -341,8 +354,8 @@ class _CardListState extends State<CardList> {
                   ],
                 );
               case CardState.empty:
-              case CardState.error:
               case CardState.loading:
+              case CardState.error:
                 return const SizedBox();
             }
           },

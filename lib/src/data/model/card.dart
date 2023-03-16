@@ -51,7 +51,7 @@ class HearthstoneCard extends EntityAbstractCard {
     }
 
     return HearthstoneCard(
-      dbfId: json['dbfId'] as String?,
+      dbfId: json['dbfId'] as int?,
       cardSet: json['cardSet'] as String?,
       name: json['name'] as String,
       cardId: json['cardId'] as String,

@@ -1,5 +1,6 @@
 import 'package:first_app/src/data/model/card_event.dart';
 import 'package:first_app/src/domain/repository/repository_card.dart';
+import 'package:first_app/src/domain/usecase/implementation/fetch_data_usecase.dart';
 import 'package:first_app/src/presentation/bloc/card_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -12,12 +13,14 @@ import 'mocks.dart';
 void main() {
   late MockRepositoryCard repositoryCard;
   late CardBloc cardBloc;
+  late FetchDataUseCase fetchDataUseCase;
 
   setUp(() {
     repositoryCard = MockRepositoryCard();
-
+    fetchDataUseCase = FetchDataUseCase(repositoryCard: repositoryCard);
     cardBloc = CardBloc(
       repositoryCard: repositoryCard,
+      fetchDataUseCase: fetchDataUseCase,
     );
   });
 

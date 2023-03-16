@@ -11,7 +11,7 @@ void main() {
     cardId: '2',
     locale: 'localin',
     cardSet: 'classic',
-    dbfId: '312',
+    dbfId: 312,
     type: 'Dragon',
     text: 'friendly',
     health: 12,
